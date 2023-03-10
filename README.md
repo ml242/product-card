@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-> Important: Please make sure to commit often and make the messages are descriptive as possible. If the work is returned to us with only one commit, we will not be able to evaluate the work.
+> Important: Please make sure to commit often and make the messages as descriptive as possible. If the work is returned to us with only one commit, we will not be able to evaluate the work.
 
 ## Getting started
 
@@ -26,10 +26,10 @@ Create a project card based on the design provided. The card should match the de
 
 ### Design
 
-The design can be found in the `design` folder under the name Product-Card-Design.jpeg. You can use either one to complete the task. The product image is located in the public folder, and the Droplet SVG is located in the `src` folder.
+The design can be found in the `design` folder under the name Product-Card-Design.jpeg. The product image is located in the public folder, and the Droplet SVG is located in the `src` folder.
 
 ## Completing
 
-When you are done, please zip up and send the project back to us. Please do not include the `node_modules` folder in the zip file. You can also upload the project to a public repository on GitHub and send us the link. Please make sure to commit often and make the messages are descriptive as possible.
+When you are done, please zip up and send the project back to us. Please do not include the `node_modules` folder in the zip file. You can also upload the project to a public repository on GitHub and send us the link. Please make sure to commit often and make sure the messages are as descriptive as possible.
 
 *Important:* If the work is returned to us with only one commit, we will not be able to evaluate the work.
