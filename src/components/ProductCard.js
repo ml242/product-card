@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components'
+
 import { products } from "../api/products";
 
 const row = css`
@@ -9,6 +11,12 @@ const row = css`
     gap: 1rem;
     padding: 0.5rem 0;
     box-sizing: border-box;
+`;
+
+const ul = css`
+    list-style-type: none;
+    margin-block: 0;
+    padding-inline: 0;
 `;
 
 const Card = styled.div`
@@ -45,23 +53,46 @@ const Subtitle = styled.div`
 const Name = styled.div``;
 const Price = styled.div``;
 
-const AbsorbencyPicker = styled.div`
+const AbsorbencyPicker = styled.ul`
     ${row}
+    ${ul}
 `;
 const ColorPicker = styled.div`
     ${row}
+    ${ul}
 `;
 
-const Button = styled.input.attrs({ 
-    type: 'button',
-  })`
-    background-color: none;
-    padding: 0;
+const Item = styled.li`
     cursor: pointer;
+`;
+
+const ColorItem = styled.li`
+    display: flex;
+    background: ${props => props.$backgroundColor && props.$backgroundColor};
+    cursor: pointer;
+    height: 2.85rem;
+    width: 2.85rem;
+    border: ${props => props.$isActive ? `0.15rem solid black` : `0.15rem solid ${props.$backgroundColor}`};
+
+    ${props => props.$isActive && `
+        background-color: white;
+        border: 0.15rem solid black;
+    `}
+`;
+
+const Circle = styled.div`
+    height: 90%;
+    width: 90%;
+    border-radius: 50%;
+    background: ${props => props.$backgroundColor && props.$backgroundColor};
+    margin-left: 5%;
+    align-self: center;
 `;
 
 const ProductCard = () => {
     const product = products[0];
+    const [activeColor, setActiveColor] = useState(0);
+
     return (
         <Card>
             <Image src={product.image.url} alt={product.image.alt} />
@@ -75,12 +106,27 @@ const ProductCard = () => {
             <Options>
                 <AbsorbencyPicker>
                     {product.options.absorbency.map((item, i) => {
-                        return <Button key={i} value={`Absorbency Level ${item}`} /> 
+                        return (
+                            <Item 
+                                key={i}
+                            >
+                                {`Absorbency Level ${item}`}
+                            </Item>
+                        )
                     })}
                 </AbsorbencyPicker>
                 <ColorPicker>
-                    {product.options.colors.map((item, i) => {
-                        return <Button key={i} value={`color opt ${item}`}/>
+                    {product.options.colors.map((color, i) => {
+                        return (
+                            <ColorItem 
+                                key={i} 
+                                onClick={() => setActiveColor(i)} 
+                                $backgroundColor={color} 
+                                $isActive={i === activeColor} 
+                            >
+                                {i === activeColor && <Circle $backgroundColor={color}/>}
+                            </ColorItem>
+                        )
                     })}
                 </ColorPicker>
             </Options>
