@@ -1,3 +1,4 @@
+import { shape, string, number, array} from 'prop-types';
 import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 import VariantPicker from './VariantPicker';
@@ -47,6 +48,22 @@ const ProductCard = ({ product }) => {
             </OptionsContainer>
         </Card>
     )
+};
+
+ProductCard.propTypes = {
+    product: shape({
+        title: string,
+        name: string,
+        price: number,
+        image: shape({
+            alt: string,
+            url: string,
+        }),
+        options: shape({
+            absorbencyVariants: array,
+            colors: array,
+        }),
+    }),
 };
 
 export default ProductCard;
