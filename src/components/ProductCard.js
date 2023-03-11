@@ -1,22 +1,28 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components'
+import Droplet from "./Droplet";
 
 import { products } from "../api/products";
 
-const row = css`
-    height: 2.5rem;
+const RowStyles = css`
+    height: 3rem;
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 1rem;
+    gap: 0.75rem;
     padding: 0.5rem 0;
-    box-sizing: border-box;
 `;
 
-const ul = css`
+const UlStyles = css`
     list-style-type: none;
     margin-block: 0;
     padding-inline: 0;
+`;
+
+const SharedNameStyles = css`
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: 700;
 `;
 
 const Card = styled.div`
@@ -37,46 +43,64 @@ const Description = styled.div`
 `;
 
 
-const Options = styled.form`
+const Options = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
 `;
 
 const Details = styled.div`
-    ${row}
+    ${RowStyles}
+    height: 2rem;
     justify-content: space-between;
 `;
 const Subtitle = styled.div`
-    ${row}
+    ${RowStyles}
+    height: 2rem;
+    align-items: self-end;
+    color: gray;
+    font-size: 1.25rem;
+    font-weight: 400;
 `;
-const Name = styled.div``;
-const Price = styled.div``;
+
+const Name = styled.div`
+    ${SharedNameStyles}
+    letter-spacing: 0.1rem;
+`;
+const Price = styled.div`
+    ${SharedNameStyles}
+`;
 
 const AbsorbencyPicker = styled.ul`
-    ${row}
-    ${ul}
+    ${RowStyles}
+    ${UlStyles}
 `;
 const ColorPicker = styled.div`
-    ${row}
-    ${ul}
+    ${RowStyles}
+    ${UlStyles}
 `;
 
-const Item = styled.li`
+const VariantPicker = styled.li`
     cursor: pointer;
+    height: 100%;
+    width: 7rem;
+    border: ${props => props.$isActive ? `0.15rem solid black` : `0.15rem solid gray`};
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const ColorItem = styled.li`
     display: flex;
     background: ${props => props.$backgroundColor && props.$backgroundColor};
     cursor: pointer;
-    height: 2.85rem;
-    width: 2.85rem;
+    height: 100%;
+    width: 3rem;
     border: ${props => props.$isActive ? `0.15rem solid black` : `0.15rem solid ${props.$backgroundColor}`};
 
     ${props => props.$isActive && `
         background-color: white;
-        border: 0.15rem solid black;
+        border: 0.15rem solid ${props.$backgroundColor};
     `}
 `;
 
@@ -92,12 +116,13 @@ const Circle = styled.div`
 const ProductCard = () => {
     const product = products[0];
     const [activeColor, setActiveColor] = useState(0);
+    const [activeVariant, setActiveVariant] = useState(0);
 
     return (
         <Card>
             <Image src={product.image.url} alt={product.image.alt} />
             <Description>
-                <Subtitle>Collection</Subtitle>
+                <Subtitle>collection</Subtitle>
                 <Details>
                     <Name>{product.name}</Name>
                     <Price>${`${product.price}`}</Price>
@@ -105,13 +130,15 @@ const ProductCard = () => {
             </Description>
             <Options>
                 <AbsorbencyPicker>
-                    {product.options.absorbency.map((item, i) => {
+                    {product.options.absorbency.map((j, i) => {
                         return (
-                            <Item 
+                            <VariantPicker 
                                 key={i}
+                                $isActive={i === activeVariant}
+                                onClick={() => setActiveVariant(i)}
                             >
-                                {`Absorbency Level ${item}`}
-                            </Item>
+                                {[...Array(5)].map((k, index) => <Droplet isFilled={index + 1 <= j} width={15} />)}
+                            </VariantPicker>
                         )
                     })}
                 </AbsorbencyPicker>
