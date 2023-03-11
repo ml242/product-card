@@ -2,8 +2,6 @@ import { useState } from 'react';
 import styled, { css } from 'styled-components'
 import Droplet from "./Droplet";
 
-import { products } from "../api/products";
-
 const RowStyles = css`
     height: 3rem;
     display: flex;
@@ -118,8 +116,7 @@ const Circle = styled.div`
     align-self: center;
 `;
 
-const ProductCard = () => {
-    const product = products[0];
+const ProductCard = ({ product }) => {
     const [activeColor, setActiveColor] = useState(0);
     const [activeVariant, setActiveVariant] = useState(0);
 
