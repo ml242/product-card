@@ -20,7 +20,7 @@ const UlStyles = css`
 const SharedNameStyles = css`
     align-self: center;
     font-size: 1.75rem;
-    font-weight: 500;
+    font-weight: 550;
 `;
 
 const Card = styled.div`
@@ -42,7 +42,7 @@ const Description = styled.div`
 `;
 
 
-const Options = styled.div`
+const OptionsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -130,7 +130,7 @@ const ProductCard = ({ product }) => {
                     <Price>${`${product.price}`}</Price>
                 </Details>
             </Description>
-            <Options>
+            <OptionsContainer>
                 <AbsorbencyPicker>
                     {product.options.absorbency.map((j, i) => {
                         return (
@@ -158,7 +158,7 @@ const ProductCard = ({ product }) => {
                         )
                     })}
                 </ColorPicker>
-            </Options>
+            </OptionsContainer>
         </Card>
     )
 };
