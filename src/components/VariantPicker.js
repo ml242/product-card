@@ -6,6 +6,7 @@ const VariantPicker = ({ activeVariant, setActiveVariant, absorbencyVariants }) 
         return (
             <Variant 
                 key={i}
+                data-testid={`variant-opt-${i}`} 
                 $isActive={i === activeVariant}
                 onClick={() => setActiveVariant(i)}
             >
