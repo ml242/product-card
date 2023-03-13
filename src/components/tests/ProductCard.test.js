@@ -15,18 +15,18 @@ describe('ProductCard', () => {
   });
 
   it('clicking a color will activate it', async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup();
     render(<ProductCard product={products[0]} />);
 
     const color1 = await screen.getByTestId('color-opt-1');
     await user.click(color1);
 
-    await expect(screen.queryByTestId(`color-opt-0-active`)).not.toBeInTheDocument();
-    await expect(screen.queryByTestId(`color-opt-1-active`)).toBeInTheDocument();
+    await expect(screen.queryByTestId('color-opt-0-active')).not.toBeInTheDocument();
+    await expect(screen.queryByTestId('color-opt-1-active')).toBeInTheDocument();
   });
 
   it('clicking a variant will activate the css and deactivate another', async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup();
     render(<ProductCard product={products[0]} />);
 
     const variant0 = await screen.getByTestId('variant-opt-0');
@@ -35,7 +35,7 @@ describe('ProductCard', () => {
 
     await expect(screen.getByTestId('variant-opt-0')).toHaveStyle('border: 0.125rem solid #cccccc');
     await expect(screen.getByTestId('variant-opt-1')).toHaveStyle('border: 0.125rem solid black');
-    
+
     await user.click(variant0);
     await expect(screen.getByTestId('variant-opt-0')).toHaveStyle('border: 0.125rem solid black');
     await expect(screen.getByTestId('variant-opt-1')).toHaveStyle('border: 0.125rem solid #cccccc');

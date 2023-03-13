@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from 'styled-components';
 
 const RowStyles = css`
     height: 3rem;
@@ -78,12 +78,12 @@ export const ColorsContainer = styled.div`
 export const Variant = styled.li`
     ${PickerStyles}
     width: 7.5rem;
-    border: ${props => props.$isActive ? `0.125rem solid black` : `0.125rem solid #cccccc`};
+    border: ${(props) => (props.$isActive ? '0.125rem solid black' : '0.125rem solid #cccccc')};
     justify-content: center;
     align-items: center;
     gap: 0.1rem;
 
-    ${props => !props.$isActive && `
+    ${(props) => !props.$isActive && `
         &:hover {
             border: 0.125rem solid orange;
         }
@@ -92,16 +92,16 @@ export const Variant = styled.li`
 
 export const ColorItem = styled.li`
     ${PickerStyles}
-    background: ${props => props.$backgroundColor && props.$backgroundColor};
+    background: ${(props) => props.$backgroundColor && props.$backgroundColor};
     width: 3.25rem;
-    border: ${props => props.$isActive ? `0.25rem solid black` : `0.25rem solid ${props.$backgroundColor}`};
+    border: ${(props) => (props.$isActive ? '0.25rem solid black' : `0.25rem solid ${props.$backgroundColor}`)};
 
-    ${props => props.$isActive && `
+    ${(props) => props.$isActive && `
         background-color: white;
         border: 0.15rem solid black;
     `}
 
-    ${props => !props.$isActive && `
+    ${(props) => !props.$isActive && `
         &:hover {
             background-color: white;
             border: 0.15rem solid white;
@@ -113,12 +113,12 @@ export const Circle = styled.div`
     height: 90%;
     width: 90%;
     border-radius: 50%;
-    background: ${props => props.$backgroundColor && props.$backgroundColor};
+    background: ${(props) => props.$backgroundColor && props.$backgroundColor};
     margin-left: 5%;
     align-self: center;
     display: none;
 
-    ${$isActive => $isActive && `
+    ${($isActive) => $isActive && `
         display: block;
     `}
 

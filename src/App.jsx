@@ -1,5 +1,6 @@
-import ProductCard from "./components/ProductCard";
-import { products } from "./api/products";
+import React from 'react';
+import ProductCard from './components/ProductCard';
+import { products } from './api/products';
 
 function App() {
   return (
