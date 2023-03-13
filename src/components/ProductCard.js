@@ -2,6 +2,7 @@ import { shape, string, number, array} from 'prop-types';
 import { useState } from 'react';
 import ColorPicker from './ColorPicker';
 import VariantPicker from './VariantPicker';
+import { products } from "../api/products";
 
 import {
     Card,
@@ -24,7 +25,7 @@ const ProductCard = ({ product }) => {
         <Card>
             <Image src={product.image.url} alt={product.image.alt} />
             <Description>
-                <Subtitle>collection</Subtitle>
+                <Subtitle>{product.title}</Subtitle>
                 <Details>
                     <Name>{product.name}</Name>
                     <Price>${product.price}</Price>
@@ -63,7 +64,11 @@ ProductCard.propTypes = {
             absorbencyVariants: array,
             colors: array,
         }),
-    }),
+    }).isRequired,
 };
+
+ProductCard.defaultProps = {
+    ...products[0],
+}
 
 export default ProductCard;

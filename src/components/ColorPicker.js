@@ -1,3 +1,5 @@
+import { array, func, number } from 'prop-types';
+
 import {
     Circle,
     ColorItem,
@@ -17,10 +19,25 @@ const ColorPicker = ({
                 $backgroundColor={color} 
                 $isActive={i === activeColor} 
             >
-                {i === activeColor && <Circle $backgroundColor={color} data-testid={`color-opt-${i}-active`} />}
+                <Circle 
+                    $backgroundColor={color} 
+                    $isActive={i === activeColor} 
+                    data-testid={`color-opt-${i}-active`} 
+                />
             </ColorItem>
         )
     })
+};
+
+ColorPicker.propTypes = {
+    activeColor: number.isRequired,
+    colors: array.isRequired,
+    setActiveColor: func,
+};
+
+ColorPicker.defaultProps = {
+    activeColor: 0,
+    colors: ['black'],
 };
 
 export default ColorPicker;

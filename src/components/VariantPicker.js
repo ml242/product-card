@@ -1,3 +1,5 @@
+import { array, func, number } from 'prop-types';
+
 import Droplet from './Droplet';
 import { Variant } from './styles';
 
@@ -14,6 +16,17 @@ const VariantPicker = ({ activeVariant, setActiveVariant, absorbencyVariants }) 
             </Variant>
         )
     })
+};
+
+VariantPicker.propTypes = {
+    activeVariant: number.isRequired,
+    absorbencyVariants: array.isRequired,
+    setActiveVariant: func,
+};
+
+VariantPicker.defaultProps = {
+    activeVariant: 0,
+    absorbencyVariants: [4],
 };
 
 export default VariantPicker;

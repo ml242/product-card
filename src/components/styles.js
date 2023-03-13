@@ -21,7 +21,7 @@ const SharedNameStyles = css`
 `;
 
 const PickerStyles = css`
-    height: 3rem;
+    height: 3.25rem;
     cursor: pointer;
     display: flex;
     box-sizing: border-box;
@@ -82,6 +82,12 @@ export const Variant = styled.li`
     justify-content: center;
     align-items: center;
     gap: 0.1rem;
+
+    ${props => !props.$isActive && `
+        &:hover {
+            border: 0.125rem solid orange;
+        }
+    `}
 `;
 
 export const ColorItem = styled.li`
@@ -92,7 +98,14 @@ export const ColorItem = styled.li`
 
     ${props => props.$isActive && `
         background-color: white;
-        border: 0.15rem solid ${props.$backgroundColor};
+        border: 0.15rem solid black;
+    `}
+
+    ${props => !props.$isActive && `
+        &:hover {
+            background-color: white;
+            border: 0.15rem solid white;
+        }
     `}
 `;
 
@@ -103,4 +116,13 @@ export const Circle = styled.div`
     background: ${props => props.$backgroundColor && props.$backgroundColor};
     margin-left: 5%;
     align-self: center;
+    display: none;
+
+    ${$isActive => $isActive && `
+        display: block;
+    `}
+
+    &:hover {
+        display: block;
+    }
 `;
